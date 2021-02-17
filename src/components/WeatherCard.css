@@ -1,0 +1,8 @@
+.weather-card {
+   display: block;
+   background: rgba(255, 255, 255, .7);
+   padding: 2rem;
+   border-radius: 15px;
+   z-index: 1;
+}
+

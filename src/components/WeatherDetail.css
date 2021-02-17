@@ -1,0 +1,42 @@
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 2rem;
+	color: rgb(235, 235, 227);
+}
+
+.grid > * {
+	text-align: center;
+	padding: 1.5rem;
+	border-radius: 3px;
+}
+
+.card-1 {
+	background-image: linear-gradient(
+		to right,
+		#ff8177 0%,
+		#ff867a 0%,
+		#ff8c7f 21%,
+		#f99185 52%,
+		#cf556c 78%,
+		#b12a5b 100%
+	);
+}
+
+.card-2 {
+	background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+
+.card-3 {
+	background: rgb(131, 58, 180);
+	background: linear-gradient(
+		90deg,
+		rgba(131, 58, 180, 1) 0%,
+		rgba(253, 29, 29, 1) 54%,
+		rgba(252, 176, 69, 1) 100%
+	);
+}
+
+.card-4 {
+	background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
