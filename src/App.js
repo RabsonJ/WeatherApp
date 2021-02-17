@@ -1,19 +1,20 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+import openWeatherMap from './apis/openWeatherMap';
 import './App.css';
 import Map from './components/Map';
 import SearchBar from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
 import WeatherDetail from './components/WeatherDetail';
 class App extends Component {
-	state = { weather: {} };
+	state = { weather: {}, coords: { lat: -17.8419, lon: 25.8543 } };
 
-	componentDidMount = async () => {
-		const key = process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY;
+	componentDidMount = async (params) => {
+		this.getWeather({ lat: -17.8419, lon: 25.8543 });
+	}
+
+	getWeather = async (params) => {
 		try {
-			const { data } = await axios.get(
-				`https://api.openweathermap.org/data/2.5/weather?q=Casablanca&units=metric&appid=${key}`
-			);
+			const { data } = await openWeatherMap.get('/weather', { params });
 			console.log(data);
 			this.setState({ weather: data });
 		} catch (err) {
@@ -21,12 +22,14 @@ class App extends Component {
 		}
 	};
 
-	onSubmit = (term) => {}
+	onSubmit = (term) => {
+		this.getWeather({ q: term });
+	};
 
 	render() {
 		return (
 			<div className="container">
-				<SearchBar onSubmit={this.onSubmit}/>
+				<SearchBar onSubmit={this.onSubmit} />
 				<WeatherCard weatherData={this.state.weather} />
 				<WeatherDetail weatherData={this.state.weather} />
 				<Map weatherData={this.state.weather} />
