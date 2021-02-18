@@ -5,20 +5,30 @@ import Map from './components/Map';
 import SearchBar from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
 import WeatherDetail from './components/WeatherDetail';
+import ErrorMessage from './components/ErrorMessage';
 class App extends Component {
-	state = { weather: {}, coords: { lat: -17.8419, lon: 25.8543 } };
+	state = { weather: {}, errorMessage: ''};
 
-	componentDidMount = async (params) => {
-		this.getWeather({ lat: -17.8419, lon: 25.8543 });
-	}
+	componentDidMount = async () => {
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				const { latitude, longitude } = position.coords;
+				this.getWeather({ lat: latitude, lon: longitude });
+			},
+			(err) => {
+				this.setState({errorMessage: err.message})
+				throw err;
+			}
+		);
+	};
 
 	getWeather = async (params) => {
 		try {
 			const { data } = await openWeatherMap.get('/weather', { params });
-			console.log(data);
 			this.setState({ weather: data });
 		} catch (err) {
-			console.log(err);
+			this.setState({errorMessage: 'An error occurred while getting the weather'})
+			throw err;
 		}
 	};
 
@@ -27,6 +37,9 @@ class App extends Component {
 	};
 
 	render() {
+		if (this.state.errorMessage) {
+			return <ErrorMessage errorMessage={this.state.errorMessage} />
+		}
 		return (
 			<div className="container">
 				<SearchBar onSubmit={this.onSubmit} />
