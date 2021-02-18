@@ -5,7 +5,8 @@ class SearchBar extends Component {
 
    handleSubmit = (e) => {
       e.preventDefault();
-      this.props.onSubmit(this.state.term);
+		this.props.onSubmit(this.state.term);
+		this.setState({term: ''})
    }
    
 	render() {
@@ -15,7 +16,7 @@ class SearchBar extends Component {
 					<input
 						type="text"
 						className="form-control"
-						placeholder="Enter city name..."
+						placeholder="Enter location name..."
                   style={{ fontSize: 'inherit', fontFamily: 'inherit' }}
                   value={this.state.term}
                   onChange={(e) => this.setState({term: e.target.value})}
