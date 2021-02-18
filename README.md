@@ -1,6 +1,6 @@
 # React WeatherApp
 
-A weather app that shows the current temperature of a city as well as the humidity, wind speed, maximum & minimum temperatures, and the location of the city on a map. Built with React.js
+A weather app that shows the current temperature of a place as well as the humidity, wind speed, maximum & minimum temperatures, and the location of the place on a map. Built with React.js
 
 ### Built With
 
