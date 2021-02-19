@@ -1,11 +1,11 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
-const Map = ({ weatherData }) => {
-   if (!weatherData.coord) {
-		return '';
-   }
+const Map = ({ weatherData, coords }) => {
+   if (!coords.lat) {
+			return '';
+		}
 
-   const { lon, lat } = weatherData.coord;
+   const { lat, lon } = coords;
 	return (
 		<MapContainer
 			center={[lat, lon]}
@@ -20,7 +20,7 @@ const Map = ({ weatherData }) => {
 			/>
 			<Marker position={[lat, lon]}>
 				<Popup autoClose={false}>
-					<h3>{weatherData.name.toUpperCase()}</h3>
+					<h3>{weatherData.name}</h3>
 					<br /> Easily customizable.
 				</Popup>
 			</Marker>
