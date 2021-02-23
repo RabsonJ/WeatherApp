@@ -21,7 +21,6 @@ const Map = ({ weatherData, coords }) => {
 			<Marker position={[lat, lon]}>
 				<Popup autoClose={false}>
 					<h3>{weatherData.name}</h3>
-					<br /> Easily customizable.
 				</Popup>
 			</Marker>
 		</MapContainer>
