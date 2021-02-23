@@ -8,6 +8,9 @@
 # api keys
 .env
 
+# build folder
+/build
+
 # testing
 /coverage
 
